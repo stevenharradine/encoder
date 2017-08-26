@@ -13,5 +13,5 @@ rm installer.sh
 ```
 
 ### Configure
-`installPath` - where the script will install too
-`program` the file name of what is being installed
+ * `installPath` - where the script will install too
+ * `program` - the file name of what is being installed
