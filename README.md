@@ -4,14 +4,10 @@ Generic script for installing my other bash scripts
 ## Usage
 Add the following file to your app as `install.sh`
 ```
-installPath=/usr/local/bin
-program=qBash
-
-wget -O installer.sh https://raw.githubusercontent.com/stevenharradine/bashInstaller/master/installer.sh
-source installer.sh
-rm installer.sh
+#!/bin/bash
+curl https://raw.githubusercontent.com/stevenharradine/bashInstaller/master/installer.sh | bash -s program=qBash
 ```
 
-### Configure
+### Arguments
+ * `program` - (Required) the file name of what is being installed
  * `installPath` - where the script will install too
- * `program` - the file name of what is being installed
