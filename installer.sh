@@ -15,8 +15,6 @@ else
                         installDir=$value
                 elif [[ $key == "program" ]]; then
                         program=$value
-                elif [[ $key == "installPath" ]]; then
-                        installPath=$value
                 elif [[ $key == "githubUser" ]]; then
                         githubUser=$value
                 elif [[ $key == "gitBranch" ]]; then
