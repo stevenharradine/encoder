@@ -1,8 +1,9 @@
 #!/bin/bash
-# (c) 2017 Steven Harradine
+# (c) 2021 Steven Harradine
 installDir=/usr/local/bin
 githubUser=stevenharradine
 gitBranch=master
+apply_ownership_and_permissions=true
 
 if [ "$EUID" -ne 0 ]; then
         echo "Please run as root"
@@ -19,6 +20,8 @@ else
                         githubUser=$value
                 elif [[ $key == "gitBranch" ]]; then
                         gitBranch=$value
+                elif [[ $key == "skip-ownership-and-permissions" ]]; then
+                        apply_ownership_and_permissions=false
                 fi
         done
 
@@ -29,8 +32,13 @@ else
         else
                 echo -n "Installing . "
                 wget --quiet --output-document $installPath https://raw.githubusercontent.com/$githubUser/$program/$gitBranch/$program.sh
-                chown root:root $installPath
-                chmod 755 $installPath
+
+                if [[ $apply_ownership_and_permissions == true ]]; then
+                        chown root:root $installPath
+                        chmod 755 $installPath
+                else
+                        echo -n " skip-ownership-and-permissions . "
+                fi
                 echo "Done"
         fi
 fi

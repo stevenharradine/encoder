@@ -11,3 +11,4 @@ curl https://raw.githubusercontent.com/stevenharradine/bashInstaller/master/inst
 ### Arguments
  * `program` - (Required) the file name of what is being installed
  * `installPath` - where the script will install too
+ * `skip-ownership-and-permissions` - skips changing the ownership and permissions of the file
