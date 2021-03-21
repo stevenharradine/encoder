@@ -12,3 +12,4 @@ curl https://raw.githubusercontent.com/stevenharradine/bashInstaller/master/inst
  * `program` - (Required) the file name of what is being installed
  * `installPath` - where the script will install too
  * `skip-ownership-and-permissions` - skips changing the ownership and permissions of the file
+ * `add-sh-file-extention` - add the standard ".sh" file extention to the scripts filename

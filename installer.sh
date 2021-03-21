@@ -4,6 +4,7 @@ installDir=/usr/local/bin
 githubUser=stevenharradine
 gitBranch=master
 apply_ownership_and_permissions=true
+add_sh_file_extention=false
 
 if [ "$EUID" -ne 0 ]; then
         echo "Please run as root"
@@ -22,22 +23,29 @@ else
                         gitBranch=$value
                 elif [[ $key == "skip-ownership-and-permissions" ]]; then
                         apply_ownership_and_permissions=false
+                elif [[ $key == "add-sh-file-extention" ]]; then
+                        add_sh_file_extention=true
                 fi
         done
-
-        installPath=$installDir/$program
 
         if [[ $program == "" ]]; then
                 echo "You must define a program when calling the installer"
         else
                 echo -n "Installing . "
+
+                installPath=$installDir/$program
+                if [[ $add_sh_file_extention == true ]]; then
+                        echo -n "add-sh-file-extention . "
+                        installPath=$installPath.sh
+                fi
+
                 wget --quiet --output-document $installPath https://raw.githubusercontent.com/$githubUser/$program/$gitBranch/$program.sh
 
                 if [[ $apply_ownership_and_permissions == true ]]; then
                         chown root:root $installPath
                         chmod 755 $installPath
                 else
-                        echo -n " skip-ownership-and-permissions . "
+                        echo -n "skip-ownership-and-permissions . "
                 fi
                 echo "Done"
         fi
