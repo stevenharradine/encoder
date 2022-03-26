@@ -151,6 +151,7 @@ seconds2=$(date --date "$startTime" +%s)
 delta=$((seconds1 - seconds2))
 formatedTime=`printf '%dh:%dm:%ds\n' $((delta/3600)) $((delta%3600/60)) $((delta%60))`
 
+echo ""
 echo " Report"
 echo " ******"
 echo " Number of files: $totalItems"
